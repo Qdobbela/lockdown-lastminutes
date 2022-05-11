@@ -1,8 +1,11 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import { Container, Grid, Paper, Link } from '@mui/material';
+import AvailableSlots from './availableSlots'
 
+//Main
 export default function Main() {
+
   return (
     <Container sx={{backgroundColor: '#2F2E2C', padding: 5}} maxWidth='false'>
       
@@ -15,7 +18,7 @@ export default function Main() {
         <Box sx={{
           display: 'flex',
           margin: 'auto',
-          backgroundColor: 'white',
+          backgroundColor: '#2F2E2C',
           maxWidth: 1600,
           borderRadius: '15px',
           minHeight: '785px'
@@ -28,7 +31,7 @@ export default function Main() {
             </Paper>
 
             <Grid container spacing={2} sx={{
-              padding:5,
+              paddingY:5,
               '& > *': {
                 width: 300,
               }
@@ -41,13 +44,8 @@ export default function Main() {
                   <h3>60% slaagkans</h3>
                   <Link href="https://www.lockdown-escape.be/gent/escape-rooms/room-7" underline="hover">Meer info</Link>
                 </Paper>
-                <Paper sx= {{backgroundColor: '#307E30', '& > *': {color: 'white', textAlign: 'center', padding: 2}, margin: 'auto'}}>
-                  <h2>13:00</h2>
-                </Paper>
-                <Paper sx= {{backgroundColor: '#307E30', '& > *': {color: 'white', textAlign: 'center', padding: 2}, margin: 'auto'}}>
-                  <h2>19:00</h2>
-                </Paper>
-
+                
+                <AvailableSlots room='Room7'></AvailableSlots>
               </Grid>
               <Grid item xs={12} md={6} lg={3}> 
                 <Paper sx= {{backgroundColor: '#F2F3F5', padding: 2,paddingTop: 2, '& > *': {margin: 0}, '& > :not(h1)': {color: '#616161'}}}>
@@ -57,6 +55,8 @@ export default function Main() {
                   <h3>50% slaagkans</h3>
                   <Link href="https://www.lockdown-escape.be/gent/escape-rooms/red-alert" underline="hover">Meer info</Link>
                 </Paper>
+                
+                <AvailableSlots room='RedAlert'></AvailableSlots>
               </Grid>
               <Grid item xs={12} md={6} lg={3}> 
                 <Paper sx= {{backgroundColor: '#F2F3F5', padding: 2,paddingTop: 2, '& > *': {margin: 0}, '& > :not(h1)': {color: '#616161'}}}>
@@ -66,6 +66,8 @@ export default function Main() {
                   <h3>Team vs Team</h3>
                   <Link href="https://www.lockdown-escape.be/gent/escape-rooms/sector-z-2-0" underline="hover">Meer info</Link>
                 </Paper>
+                
+                <AvailableSlots room='SectorZ'></AvailableSlots>
               </Grid>
               <Grid item xs={12} md={6} lg={3}> 
                 <Paper sx= {{backgroundColor: '#F2F3F5', padding: 2,paddingTop: 2, '& > *': {margin: 0}, '& > :not(h1)': {color: '#616161'}}}>
@@ -75,6 +77,8 @@ export default function Main() {
                   <h3>40% slaagkans</h3>
                   <Link href="https://www.lockdown-escape.be/gent/escape-rooms/the-graveyard" underline="hover">Meer info</Link>
                 </Paper>
+                
+                <AvailableSlots room='Graveyard'></AvailableSlots>
               </Grid>
             </Grid>
             </Grid>
