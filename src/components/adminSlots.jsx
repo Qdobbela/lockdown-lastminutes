@@ -25,18 +25,20 @@ function AdminButton(props){
 function TimingList(props){
   const timeSlots = props.timeSlots;
 
+  
+
   const opslaan = () => {
-        timeSlots.forEach(timeSlot => {
-          const bookingJson = JSON.stringify(timeSlot)
-          console.log(bookingJson)
-          fetch()
-          axios.put('http://localhost:9000/', {
-            id: timeSlot.id,
-            timeSlot: timeSlot.timeSlot,
-            free: timeSlot.free
-          })
-        })
-        window.location.reload();
+
+      timeSlots.forEach(timeSlot => {
+            axios.put('http://localhost:9000/', {
+              id: timeSlot.id,
+              timeSlot: timeSlot.timeSlot,
+              free: timeSlot.free
+        }).then(function (res) {
+          console.log(res);
+        }).then(window.location.reload())
+      })
+
   }
 
   var listItems = timeSlots.map((timeSlot) =>
