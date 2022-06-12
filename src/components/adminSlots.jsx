@@ -24,11 +24,9 @@ function AdminButton(props){
 
 function TimingList(props){
   const timeSlots = props.timeSlots;
-
-  
+  console.log(timeSlots)
 
   const opslaan = () => {
-
       timeSlots.forEach(timeSlot => {
             axios.put('http://localhost:9000/', {
               id: timeSlot.id,
@@ -36,9 +34,8 @@ function TimingList(props){
               free: timeSlot.free
         }).then(function (res) {
           console.log(res);
-        }).then(window.location.reload())
+        })
       })
-
   }
 
   var listItems = timeSlots.map((timeSlot) =>
@@ -70,36 +67,16 @@ export class AdminSlot extends React.Component{
     this.state = {
       error: null,
       isLoaded: false,
-      timeSlots: []
+      timeSlots: props.boekingen
     }
     this.room = props.room
   }
 
   componentDidMount(){
-    fetch("http://localhost:9000/" + this.room)
-      .then(res => res.json())
-      .then(
-        (result) => {
-          var boekingen = [];
-          for(var i = 0; i < result.length; i++){
-            boekingen.push(result[i])
-          }
-          this.setState({
-            isLoaded: true,
-            items: boekingen
-          })
-        },
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error
-          })
-        }
-      )
   }
 
   render(){
-    const {error, isLoaded, items} = this.state;
+    const {error, isLoaded, timeSlots} = this.state;
     if (error){
       return <div>Error: {error.message}</div>
     } else if(!isLoaded){
@@ -109,7 +86,7 @@ export class AdminSlot extends React.Component{
         </Paper>)
     } else {
         return(
-          <TimingList timeSlots={items}></TimingList>
+          <TimingList timeSlots={timeSlots}></TimingList>
         )
     }
   }
