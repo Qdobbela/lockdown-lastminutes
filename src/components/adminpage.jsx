@@ -2,47 +2,19 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import { Container, Grid, Paper, Button } from '@mui/material';
 import AdminSlot from './adminSlots';
-
-
-export function SlotList(props){
-
-  return(
-    <Grid item xs={12} md={6} lg={3}> 
-      <Paper sx= {{backgroundColor: '#F2F3F5', padding: 2,paddingTop: 2, '& > *': {margin: 0}, '& > :not(h1)': {color: '#616161'}}}>
-        <h1>{props.roomName}</h1>
-      </Paper>
-                
-      <AdminSlot room={props.roomCode} boekingen={props.boekingen}></AdminSlot>
-    </Grid>
-  )
-}
-
-const getRooms = async (roomName) =>{
-  var boekingen = []
-  await fetch("http://localhost:9000/" + roomName)
-  .then(res => res.json())
-  .then(
-    (result) => {
-      for(var i = 0; i < result.length; i++){
-        boekingen.push(result[i])
-      }
-    }
-  )
-  return boekingen
-}
+import { useState, useEffect } from 'react';
+import ListHeaderAdmin from './listHeaderAdmin';
 
 export default function AdminPage() {
+  const[boekingen, setBoekingen] = useState()
 
-  var room7Bookings = getRooms("Room7");
-  var redAlertBookings = getRooms("RedAlert");
-  var sectorZBookings = getRooms("SectorZ");
-  var graveyardBookings = getRooms("Graveyard");
+  useEffect(() => {
+
+  })
 
 
   return (
     <Container sx={{backgroundColor: '#2F2E2C', padding: 5}} maxWidth='false'>
-      
-
         <Box sx={{
           display: 'flex',
           margin: 'auto',
@@ -59,13 +31,13 @@ export default function AdminPage() {
             </Paper>
 
             <Grid container spacing={2} sx={{paddingY:5}} maxWidth="1200px" margin="auto">
-              <SlotList roomName="Room 7" roomCode="Room7" boekingen={room7Bookings}></SlotList>
+              <ListHeaderAdmin roomName="Room 7" roomCode="Room7"></ListHeaderAdmin>
 
-              <SlotList roomName="Red Alert" roomCode="RedAlert"></SlotList>
+              <ListHeaderAdmin roomName="Red Alert" roomCode="RedAlert"></ListHeaderAdmin>
 
-              <SlotList roomName="Sector Z" roomCode="SectorZ"></SlotList>
+              <ListHeaderAdmin roomName="Sector Z" roomCode="SectorZ"></ListHeaderAdmin>
 
-              <SlotList roomName="The Graveyard" roomCode="Graveyard"></SlotList>
+              <ListHeaderAdmin roomName="The Graveyard" roomCode="Graveyard"></ListHeaderAdmin>
 
               <Button size="large" sx={{backgroundColor: 'white', margin: 'auto', paddingX: '4rem', paddingY:'2rem'}}>Opslaan</Button>
             </Grid>
