@@ -61,7 +61,7 @@ export class AvailableSlots extends React.Component{
   }
 
   componentDidMount(){
-    fetch("https://lockdownapi-3ql8edlg4-qdobbela.vercel.app/" + this.room + "free")
+    fetch("https://lastminuteapi.herokuapp.com/" + this.room + "free")
       .then(res => res.json())
       .then(
         (result) => {

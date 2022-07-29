@@ -30,7 +30,7 @@ function TimingList(props){
   const opslaan = () => {
 
       timeSlots.forEach(timeSlot => {
-            axios.put('https://lockdownapi-3ql8edlg4-qdobbela.vercel.app/', {
+            axios.put('https://lastminuteapi.herokuapp.com/', {
               id: timeSlot.id,
               timeSlot: timeSlot.timeSlot,
               free: timeSlot.free
@@ -76,7 +76,7 @@ export class AdminSlot extends React.Component{
   }
 
   componentDidMount(){
-    fetch("https://lockdownapi-3ql8edlg4-qdobbela.vercel.app/" + this.room)
+    fetch("https://lastminuteapi.herokuapp.com/" + this.room)
       .then(res => res.json())
       .then(
         (result) => {
