@@ -1,11 +1,12 @@
 import React from "react";
-import { Paper, Button} from "@mui/material";
+import { Paper, Button, Snackbar, Alert} from "@mui/material";
 import axios from 'axios';
 
 function AdminButton(props){
   var timeSlot = props.timeSlot
   var [free, setFree] = React.useState(props.timeSlot.free);
   timeSlot.free = free
+
 
   const clickBooking = () => {
     if(free){
@@ -24,10 +25,14 @@ function AdminButton(props){
 
 function TimingList(props){
   const timeSlots = props.timeSlots;
+  var [open, setOpen] = React.useState(false);
 
-  
+  function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
 
-  const opslaan = () => {
+  const opslaan = async () => {
+      setOpen(true)
 
       timeSlots.forEach(timeSlot => {
             axios.put('https://lastminuteapi.herokuapp.com/', {
@@ -36,9 +41,11 @@ function TimingList(props){
               free: timeSlot.free
         }).then(function (res) {
           console.log(res);
-        }).then(window.location.reload())
+        })
       })
 
+      await sleep(3000);
+      window.location.reload();
   }
 
   var listItems = timeSlots.map((timeSlot) =>
@@ -57,6 +64,12 @@ function TimingList(props){
       <div>
         <p>{listItems}</p>
         <Button onClick={opslaan} sx={{backgroundColor: 'yellow'}}>Opslaan</Button>
+        
+        <Snackbar open={open} autoHideDuration={6000}>
+            <Alert severity="success" sx={{ width: '100%' }}>
+              Opslaan...
+            </Alert>
+        </Snackbar>
       </div>
 
     )

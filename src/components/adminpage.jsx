@@ -1,14 +1,12 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import { Container, Grid, Paper } from '@mui/material';
+import { Container, Grid, Paper} from '@mui/material';
 import AdminSlot from './adminSlots';
 
 //Main
 export default function AdminPage() {
-
   return (
-    <Container sx={{backgroundColor: '#2F2E2C', padding: 5}} maxWidth='false'>
-      
+    <Container sx={{backgroundColor: '#2F2E2C', padding: 5}} maxWidth='false'>      
 
         <Box sx={{
           display: 'flex',
@@ -31,7 +29,7 @@ export default function AdminPage() {
                   <h1>Room 7</h1>
                 </Paper>
                 
-                <AdminSlot room='Room7'></AdminSlot>
+                <AdminSlot room='Room7' ></AdminSlot>
               </Grid>
               <Grid item xs={12} md={6} lg={3}> 
                 <Paper sx= {{backgroundColor: '#F2F3F5', padding: 2,paddingTop: 2, '& > *': {margin: 0}, '& > :not(h1)': {color: '#616161'}}}>
